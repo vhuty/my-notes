@@ -28,7 +28,12 @@ if (isset($_POST['submit'])) {
     }
   }
 
-  echo('<p>User with such email and password not found</p>');
+  echo('
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      User with such email and password not found
+      <button data-bs-dismiss="alert" type="button" class="btn-close" aria-label="Close"></button>
+    </div>
+  ');
 }
 
 include('./first-step.html');
