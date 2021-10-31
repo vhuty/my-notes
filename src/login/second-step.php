@@ -22,5 +22,11 @@ if (isset($_POST['submit'])) {
   exit();
 }
 
+echo('
+  <div class="alert alert-primary" role="alert">
+  '.$_SESSION['email'].'
+  </div>
+');
+
 include('./second-step.html');
 ?>  
