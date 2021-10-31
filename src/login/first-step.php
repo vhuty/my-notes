@@ -1,6 +1,10 @@
 <?
 session_start();
 
+if (isset($_SESSION['email'])) {
+  header('Location: /login/second-step.php');
+}
+
 $users = array(
   sha1('adminimda@gmail.com') => '70033451de355e8bbbd76d80fdb25fd9b89724fc' //pumpumpumpkin
 );
@@ -16,10 +20,9 @@ if (isset($_POST['submit'])) {
     $password = $users[$email_hash];
 
     if ($password === $password_hash) {
-      $_SESSION['id'] = uniqid();
       $_SESSION['email'] = $raw_email;
 
-      header("Location: /");
+      header('Location: /login/second-step.php');
 
       exit();
     }
@@ -28,5 +31,5 @@ if (isset($_POST['submit'])) {
   echo('<p>User with such email and password not found</p>');
 }
 
-include('./login.html');
+include('./first-step.html');
 ?>  
