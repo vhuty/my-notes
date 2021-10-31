@@ -17,8 +17,9 @@ if (isset($_POST['submit'])) {
 
     if ($password === $password_hash) {
       $_SESSION['id'] = uniqid();
+      $_SESSION['email'] = $raw_email;
 
-      header("Location: index.php");
+      header("Location: /");
 
       exit();
     }
@@ -27,7 +28,5 @@ if (isset($_POST['submit'])) {
   echo('<p>User with such email and password not found</p>');
 }
 
-echo("<script>console.log(". json_encode($_POST) .");</script>");
-
-include('login.html');
+include('./login.html');
 ?>  

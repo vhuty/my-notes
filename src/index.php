@@ -1,9 +1,5 @@
 <?
-session_start();
+include('auth.php');
 
-if (!isset($_SESSION['id'])) {
-  header("Location: login.php");
-} else {
-  header("Location: test.php");
-}
+header("Location: /test/test.php");
 ?>
