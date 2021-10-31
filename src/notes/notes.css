@@ -1,0 +1,22 @@
+#notes-list-form {
+  margin: 20px auto;
+  height: 800px;
+  width: 1400px;
+}
+
+#notes-list-form-inner {
+  margin: 0 auto;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.notes-list-item {
+  width: 362px;
+  margin: 10px;
+}
+
+.notes-list-item .card-header {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,5 +1,5 @@
 <?
 include('auth.php');
 
-header('Location: /test/test.php');
+header('Location: /notes/notes.php');
 ?>
