@@ -15,7 +15,7 @@
 
     $sent = mail($email, 'My notes', implode(', ', $notes));
 
-    header('Location: /?sent_email=' . json_encode($sent));
+    header('Location: /');
 
     exit();
   }
