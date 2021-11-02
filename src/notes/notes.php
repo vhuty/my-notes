@@ -5,11 +5,15 @@
   $filename = '../assets/' . $email_hash;
 
   if (isset($_POST['submit'])) {
-    $notes = array_filter($_POST, function ($value) {
-      return str_starts_with($value, 'note');
-    });
+    $notes = array_filter(
+      $_POST, 
+      fn ($key) => str_starts_with($key, 'note'), 
+      ARRAY_FILTER_USE_KEY
+    );
 
     file_put_contents($filename, implode('\n', $notes));
+
+    header('Location: /');
 
     exit();
   }
