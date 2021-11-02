@@ -34,6 +34,12 @@ class $NoteCard {
   }
 }
 
+const replaceChildren = (parent, ...children) => {
+  parent.innerHTML = '';
+
+  children.forEach((node) => parent.appendChild(node));
+};
+
 document.addEventListener('DOMContentLoaded', async () => {
   const divNotes = document.getElementById('notes-list-form-inner');
   const btnAddNote = document.getElementById('btn-add-note');
@@ -49,15 +55,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     );
   });
 
+  replaceChildren(
+    divNotes, 
+    new $NoteCard(1, 'Note text', 'Note title')
+      .setOnDeleteButton((element) => element.remove())
+      .getElement()
+  );
+
   const response = await fetch('/notes/notes.php?json=true');
   const notes = await response.json();
 
-  divNotes.innerHTML = '';
-  notes.forEach((note, index) => {
-    divNotes.appendChild(
-      new $NoteCard(index + 1, note, note)
+  replaceChildren(
+    divNotes,
+    ...notes.map((note, index) => (
+        new $NoteCard(index + 1, note, note)
         .setOnDeleteButton((element) => element.remove())
         .getElement()
-    );
-  });
+      )
+    )
+  )
 });
