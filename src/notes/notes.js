@@ -1,8 +1,9 @@
 class $NoteCard {
-  constructor(id, text, title) {
+  constructor(id, text) {
     this.id = id;
     this.text = text;
-    this.title = title;
+    // Disabled temporary
+    // this.title = title;
 
     this.element = document.createElement('div');
     this.element.classList.add('divNoteCard', 'card', 'notes-list-item');
@@ -12,11 +13,13 @@ class $NoteCard {
         <button id="delete-card-${id}" type="button" class="btnDeleteCard btn btn-sm btn-outline-danger">Delete</button>
       </div>
       <div class="card-body">
-        <input type="text" class="form-control card-title" value="${title}"></input>
         <textarea class="form-control card-text" rows="3" name="note${id}">${text}</textarea>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
       </div>
     `;
+
+    // Disabled temporary
+    // <input type="text" class="form-control card-title" value="${title}"></input>
+    // <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   }
 
   setOnDeleteButton(handler) {
@@ -49,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     divNotes.insertAdjacentElement(
       'beforeend', 
-      new $NoteCard(id, 'Note text', 'Note title')
+      new $NoteCard(id, 'Note text')
         .setOnDeleteButton((element) => element.remove())
         .getElement()
     );
@@ -57,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   replaceChildren(
     divNotes, 
-    new $NoteCard(1, 'Note text', 'Note title')
+    new $NoteCard(1, 'Note text')
       .setOnDeleteButton((element) => element.remove())
       .getElement()
   );
@@ -68,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   replaceChildren(
     divNotes,
     ...notes.map((note, index) => (
-        new $NoteCard(index + 1, note, note)
+        new $NoteCard(index + 1, note)
         .setOnDeleteButton((element) => element.remove())
         .getElement()
       )
