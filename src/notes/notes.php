@@ -1,8 +1,14 @@
 <?
   include('../auth.php');
 
+  $assets_dir = '../assets/';
+
+  if(!is_dir($assets_dir)) {
+    mkdir($assets_dir);
+  }
+
   $email = $_SESSION['email'];
-  $filename = '../assets/' . sha1($email);
+  $filename = $assets_dir . sha1($email);
 
   if (isset($_POST['submit'])) {
     $notes = array_filter(
