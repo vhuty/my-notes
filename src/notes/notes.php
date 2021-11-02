@@ -1,8 +1,8 @@
 <?
   include('../auth.php');
 
-  $email_hash = sha1($_SESSION['email']);
-  $filename = '../assets/' . $email_hash;
+  $email = $_SESSION['email'];
+  $filename = '../assets/' . sha1($email);
 
   if (isset($_POST['submit'])) {
     $notes = array_filter(
@@ -13,7 +13,9 @@
 
     file_put_contents($filename, implode('\n', $notes));
 
-    header('Location: /');
+    $sent = mail($email, 'My notes', implode(', ', $notes));
+
+    header('Location: /?sent_email=' . json_encode($sent));
 
     exit();
   }
